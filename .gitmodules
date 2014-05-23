@@ -1,0 +1,4 @@
+[submodule "plowshare"]
+    path = plowshare
+    url = https://code.google.com/p/plowshare/
+
