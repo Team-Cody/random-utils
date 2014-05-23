@@ -5,7 +5,7 @@ Standard utilities for use on a remote server.
 
 As soon as you clone this repo, run the following commands to
 clone plowshare (required for kody_upload).
-```bash
+```shell
 git submodule init
 git submodule update
 ```
