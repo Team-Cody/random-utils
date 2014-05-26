@@ -41,11 +41,5 @@ git filter-branch -f --commit-filter '
         git commit-tree "$@";
     else
         git commit-tree "$@";
-    fi'
-    if [ "$tmp" -eq "0" ];
-    then
-        HEAD
-    else
-        $sha_tofix..HEAD
-    fi
+    fi' $sha_tofix..HEAD
 
