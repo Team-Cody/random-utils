@@ -15,7 +15,12 @@ hash=`echo -n "$2" | md5sum`
 
 if [ "${hash}" == "7ccfaa4b4c25662840390b8f9db2235c  -" ]; then
     if [ "$3" != "" ]; then
-        upload.sh $3 --auth=teamcody:$2 "$1";
+        if [ "$3" == "turbobit" ]
+        then
+        upload.sh $3 --auth=codydevs@gmail.com:$2 "$1";
+	else        
+ 	upload.sh $3 --auth=teamcody:$2 "$1";
+	fi
     else
         upload.sh bayfiles --auth=teamcody:$2 "$1";
     fi;

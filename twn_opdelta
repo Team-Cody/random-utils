@@ -1,0 +1,50 @@
+#!/bin/bash
+
+echo "twn_opdelta v0.1"
+
+if [ "$1" == "" ] || [ "$2" == "" ] || [ "$3" == "" ] || [ "$4" == "" ]
+then
+    echo "usage:"
+    echo "    twn_opdelta <delta/patch> <old> <new> <pass>"
+    exit;
+fi;
+
+if [ "$1" == "delta" ]
+then
+
+
+rm -rf op_delta_tmp;
+
+mkdir -p op_delta_tmp;
+
+cd op_delta_tmp;
+
+mkdir -p current;
+mkdir -p last;
+
+cd last;
+kody_download $2 $4;
+fil_last=`ls`
+echo "$fil_last"
+#unzip *.zip;
+#rm *.zip;
+cd ..
+
+cd current;
+kody_download $3 $4;
+#unzip *.zip;
+#rm *.zip;
+fil_curr=`ls`
+echo "$fil_curr"
+cd ..
+
+mkdir -p delta;
+
+delta_fil=`echo $(echo $(echo ${fil_last:0:-4} | tail -c +12 )_to_$(echo ${fil_curr:0:-4} |tail -c +12 ).delta | sed s@pico-@@g)`
+
+#xdeltadir.pl $1 last current delta;
+xdelta3 -9evfS none -s last/$fil_last current/$fil_curr delta/${delta_fil}
+
+kody_upload delta/${delta_fil} $4 rapidshare
+
+fi;

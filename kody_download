@@ -1,0 +1,4 @@
+#!/bin/bash
+
+
+download.sh --auth=teamcody:$2 "$1";
